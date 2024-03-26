@@ -1,11 +1,16 @@
+import { useEffect } from "react";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import Hero from "../components/Hero";
 
 interface Props {
   children: React.ReactNode;
+  title: string;
 }
-const Layout = ({ children }: Props) => {
+const Layout = ({ title, children }: Props) => {
+  useEffect(() => {
+    document.title = title;
+  });
   return (
     <div className="flex flex-col min-h-screen">
       <Header />

@@ -15,7 +15,7 @@ const App = () => {
         <Route
           path="/"
           element={
-            <Layout>
+            <Layout title="Hotle Management | Home">
               <p>Home Page</p>
             </Layout>
           }
@@ -23,7 +23,7 @@ const App = () => {
         <Route
           path="/search"
           element={
-            <Layout>
+            <Layout title="Hotle Management | Search">
               <p>Search Page</p>
             </Layout>
           }
@@ -31,7 +31,7 @@ const App = () => {
         <Route
           path="/register"
           element={
-            <Layout>
+            <Layout title="Hotle Management | Register">
               <Register />
             </Layout>
           }
@@ -39,7 +39,7 @@ const App = () => {
         <Route
           path="/sign-in"
           element={
-            <Layout>
+            <Layout title="Hotle Management | Sign In">
               <SignIn />
             </Layout>
           }
