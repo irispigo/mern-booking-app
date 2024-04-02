@@ -3,16 +3,16 @@ import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
 import { Link, useNavigate } from "react-router-dom";
-import firebaseApp, { firebaseConfig } from "../config/firebaseConfig";
-import firebase from "firebase/compat/app";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
-  UserCredential,
-} from "firebase/auth";
+// import firebaseApp, { firebaseConfig } from "../config/firebaseConfig";
+// import firebase from "firebase/compat/app";
+// import {
+//   getAuth,
+//   GoogleAuthProvider,
+//   signInWithPopup,
+//   signInWithEmailAndPassword,
+//   createUserWithEmailAndPassword,
+//   UserCredential,
+// } from "firebase/auth";
 
 export type SignInFormData = {
   email: string;
@@ -47,42 +47,42 @@ const SignIn = () => {
 
     // signInWithEmail(data.email, data.password);
   });
-  const signInWithEmail = async (email: string, password: string) => {
-    const auth = getAuth(firebaseApp);
-    console.log(password);
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // User signed in successfully
-        const user = userCredential.user;
-        console.log("User signed in:", user);
-      })
-      .catch((error) => {
-        // Handle sign-in errors
-        console.error("Error signing in:", error);
-      });
-  };
+  // const signInWithEmail = async (email: string, password: string) => {
+  //   const auth = getAuth(firebaseApp);
+  //   console.log(password);
+  //   signInWithEmailAndPassword(auth, email, password)
+  //     .then((userCredential) => {
+  //       // User signed in successfully
+  //       const user = userCredential.user;
+  //       console.log("User signed in:", user);
+  //     })
+  //     .catch((error) => {
+  //       // Handle sign-in errors
+  //       console.error("Error signing in:", error);
+  //     });
+  // };
   /////// Google Auth
 
-  const signInWithGoogle = async () => {
-    firebase.initializeApp(firebaseConfig);
-    var provider = new firebase.auth.GoogleAuthProvider();
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then((result) => {
-        const user = result.user;
-        console.log(user?.email);
-      });
-  };
+  // const signInWithGoogle = async () => {
+  //   firebase.initializeApp(firebaseConfig);
+  //   var provider = new firebase.auth.GoogleAuthProvider();
+  //   firebase
+  //     .auth()
+  //     .signInWithPopup(provider)
+  //     .then((result) => {
+  //       const user = result.user;
+  //       console.log(user?.email);
+  //     });
+  // };
 
-  const signOut = async () => {
-    try {
-      const result = await firebase.auth().signOut();
-      console.log("sign out", result);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // const signOut = async () => {
+  //   try {
+  //     const result = await firebase.auth().signOut();
+  //     console.log("sign out", result);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   return (
     <div>
@@ -132,7 +132,7 @@ const SignIn = () => {
         </span>
       </form>
       <div className="flex flex-row justify-center gap-3">
-        <button
+        {/* <button
           className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-xl"
           onClick={signInWithGoogle}
         >
@@ -143,7 +143,7 @@ const SignIn = () => {
           onClick={signOut}
         >
           SignOut
-        </button>
+        </button> */}
       </div>
     </div>
   );
