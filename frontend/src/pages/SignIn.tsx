@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { useMutation, useQueryClient } from "react-query";
 import * as apiClient from "../api-client";
 import { useAppContext } from "../contexts/AppContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 // import firebaseApp, { firebaseConfig } from "../config/firebaseConfig";
 // import firebase from "firebase/compat/app";
 // import {
@@ -21,6 +21,7 @@ export type SignInFormData = {
 const SignIn = () => {
   const { showToast } = useAppContext();
   const navigate = useNavigate();
+  const location = useLocation();
   const queryClient = useQueryClient();
 
   const {
@@ -32,7 +33,7 @@ const SignIn = () => {
     onSuccess: async () => {
       showToast({ message: "Sign in Successful!", type: "SUCCESS" });
       await queryClient.invalidateQueries("validateToken");
-      navigate("/");
+      navigate(location.state?.from?.pathname || "/");
       //1. show the toast
       //2. navigate to the home page
     },
