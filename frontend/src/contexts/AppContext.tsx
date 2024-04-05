@@ -8,6 +8,9 @@ import { useQuery } from "react-query";
 //Context provides a way to share values like themes, preferred language, or user authentication status across many components without
 //having to explicitly pass props at every level of the component tree.
 import * as apiClient from "../api-client";
+import { loadStripe, Stripe } from "@stripe/stripe-js";
+
+const STRIPE_PUB_KEY = import.meta.env.VITE_STRIPE_PUB_KEY || "";
 
 type ToastMessage = {
   message: string;
@@ -17,9 +20,12 @@ type ToastMessage = {
 type AppContext = {
   showToast: (toastMessage: ToastMessage) => void;
   isLoggedIn: Boolean;
+  stripePromise: Promise<Stripe | null>;
 };
 
 const AppContext = React.createContext<AppContext | undefined>(undefined);
+
+const stripePromise = loadStripe(STRIPE_PUB_KEY);
 
 export const AppContextProvider = ({
   //// create a provider component (AppContextProvider) that wraps around the components that need access to the context.
@@ -39,6 +45,7 @@ export const AppContextProvider = ({
           setToast(toastMessage);
         },
         isLoggedIn: !isError,
+        stripePromise,
       }}
     >
       {toast && (
