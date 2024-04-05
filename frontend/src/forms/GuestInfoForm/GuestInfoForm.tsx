@@ -43,6 +43,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
   maxDate.setFullYear(maxDate.getFullYear() + 1);
 
   const onSubmit = (data: GuestInfoFormData) => {
+    console.log(data.adultCount, data.childCount);
     search.saveSearchValues(
       "",
       data.checkIn,
